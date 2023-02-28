@@ -10,23 +10,30 @@ import SwiftUI
 
 struct RecipeList: ReducerProtocol {
     struct State: Equatable {
-        let recipes: [Recipe]
+        let loadingState: LoadingState
 
-        public init() {
-            self.recipes = [
-                Recipe(name: "Ragu"),
-                Recipe(name: "Cacio e Pepe"),
-                Recipe(name: "Bolognese"),
-            ]
+        enum LoadingState: Equatable {
+            case loaded(recipes: [Recipe])
+            case loading
+            
+            var recipes: [Recipe] {
+                guard case .loaded(let recipes) = self else { return [] }
+                return recipes
+            }
+            
+            var isLoading: Bool { self == .loading }
         }
     }
 
     enum Action: Equatable {
-        case recipeTapped
+        case onAppear
+        case recipeTapped(recipe: Recipe)
     }
 
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
         switch action {
+        case .onAppear:
+            return .none
         case .recipeTapped:
             return .none
         }

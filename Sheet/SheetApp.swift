@@ -14,9 +14,16 @@ struct SheetApp: App {
         WindowGroup {
             RecipeListView(
                 store: Store(
-                initialState: RecipeList.State(),
-                reducer: RecipeList()
-              )
+                    initialState: RecipeList.State(
+                        loadingState: .loaded(
+                            recipes: [
+                                Recipe(name: "Gnocci"),
+                                Recipe(name: "Gnocci"),
+                                Recipe(name: "Gnocci"),
+                            ])
+                    ),
+                    reducer: RecipeList()
+                )
             )
         }
     }
