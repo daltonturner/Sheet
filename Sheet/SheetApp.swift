@@ -15,6 +15,7 @@ struct SheetApp: App {
             RecipeListView(
                 store: Store(
                     initialState: RecipeList.State(
+                        filterText: "",
                         loadingState: .loaded(
                             recipes: [
                                 Recipe(name: "Gnocci"),

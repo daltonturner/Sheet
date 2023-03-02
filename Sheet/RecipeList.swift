@@ -10,6 +10,7 @@ import SwiftUI
 
 struct RecipeList: ReducerProtocol {
     struct State: Equatable {
+        let filterText: String
         let loadingState: LoadingState
 
         enum LoadingState: Equatable {
@@ -26,12 +27,15 @@ struct RecipeList: ReducerProtocol {
     }
 
     enum Action: Equatable {
+        case filterTextChanged(String)
         case onAppear
         case recipeTapped(recipe: Recipe)
     }
 
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
         switch action {
+        case .filterTextChanged(_):
+            return .none
         case .onAppear:
             return .none
         case .recipeTapped:

@@ -14,11 +14,17 @@ struct RecipeListView: View {
 
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            if viewStore.loadingState.isLoading {
-                ProgressView()
-            } else {
-                recipeList(for: viewStore)
+            VStack {
+                searchBar(for: viewStore)
+                if viewStore.loadingState.isLoading {
+                    ProgressView()
+                } else {
+                    recipeList(for: viewStore)
+                }
             }
+            .padding()
+            .navigationTitle("Recipes")
+            .onAppear { viewStore.send(.onAppear) }
         }
     }
 
@@ -42,5 +48,62 @@ struct RecipeListView: View {
             }
         }
         .padding()
+    }
+
+    @ViewBuilder
+    func searchBar(for viewStore: ViewStoreOf<RecipeList>) -> some View {
+        HStack {
+            Image(systemName: "magnifyingglass")
+            TextField(
+                "Filter recipes",
+                /*
+                 TCA provides a helper function `binding` on the ViewStore. It reads data from State
+                 and uses an action to send data to the Store via Reducer with the given action.
+                 */
+                text: viewStore.binding(
+                    get: \.filterText,
+                    send: RecipeList.Action.filterTextChanged
+                )
+            )
+            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .autocapitalization(.none)
+            .disableAutocorrection(true)
+        }
+    }
+}
+
+struct RecipieListView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationView {
+            RecipeListView(
+                store: Store(
+                    initialState: RecipeList.State(
+                        filterText: "",
+                        loadingState: .loaded(
+                            recipes: [
+                                Recipe(name: "Gnocci"),
+                                Recipe(name: "Gnocci"),
+                                Recipe(name: "Gnocci"),
+                            ]
+                        )
+                    ),
+                    reducer: .empty,
+                    environment: ()
+                )
+            )
+        }
+        
+        NavigationView {
+            RecipeListView(
+                store: Store(
+                    initialState: RecipeList.State(
+                        filterText: "",
+                        loadingState: .loading
+                    ),
+                    reducer: .empty,
+                    environment: ()
+                )
+            )
+        }
     }
 }
