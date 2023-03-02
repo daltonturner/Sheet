@@ -1,2 +1,2 @@
 # Sheet
-Recipe app written in SwiftUI
+Recipe app written with SwiftUI and TCA.
