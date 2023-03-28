@@ -15,6 +15,7 @@
 		25D7A0B929A9914600CF553D /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 25D7A0B829A9914600CF553D /* ComposableArchitecture */; };
 		25D7A0BB29AA93D500CF553D /* RecipeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D7A0BA29AA93D500CF553D /* RecipeList.swift */; };
 		25D7A0BF29B5829200CF553D /* Sheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D7A0BE29B5829200CF553D /* Sheet.swift */; };
+		25DD521629D120A5001DB49A /* RecipeDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DD521529D120A5001DB49A /* RecipeDetail.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		25D7A0B529A9872F00CF553D /* RecipeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailView.swift; sourceTree = "<group>"; };
 		25D7A0BA29AA93D500CF553D /* RecipeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeList.swift; sourceTree = "<group>"; };
 		25D7A0BE29B5829200CF553D /* Sheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sheet.swift; sourceTree = "<group>"; };
+		25DD521529D120A5001DB49A /* RecipeDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 				25D7A0BA29AA93D500CF553D /* RecipeList.swift */,
 				25A7878929A5D8C70031D4E9 /* RecipeListView.swift */,
 				25D7A0B529A9872F00CF553D /* RecipeDetailView.swift */,
+				25DD521529D120A5001DB49A /* RecipeDetail.swift */,
 				25A7878B29A5D8C70031D4E9 /* Assets.xcassets */,
 				25A7878D29A5D8C70031D4E9 /* Preview Content */,
 			);
@@ -158,6 +161,7 @@
 				25A7878A29A5D8C70031D4E9 /* RecipeListView.swift in Sources */,
 				25D7A0B629A9872F00CF553D /* RecipeDetailView.swift in Sources */,
 				25A7878829A5D8C70031D4E9 /* SheetApp.swift in Sources */,
+				25DD521629D120A5001DB49A /* RecipeDetail.swift in Sources */,
 				25D7A0BB29AA93D500CF553D /* RecipeList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
