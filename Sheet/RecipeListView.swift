@@ -18,7 +18,9 @@ struct RecipeListView: View {
                 VStack {
                     searchBar(for: viewStore)
                     if viewStore.loadingState.isLoading {
+                        Spacer()
                         ProgressView()
+                        Spacer()
                     } else {
                         recipeList(for: viewStore)
                     }
@@ -76,36 +78,31 @@ struct RecipeListView: View {
 
 struct RecipieListView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            RecipeListView(
-                store: Store(
-                    initialState: RecipeList.State(
-                        filterText: "",
-                        loadingState: .loaded(
-                            recipes: [
-                                Recipe(name: "Gnocci"),
-                                Recipe(name: "Gnocci"),
-                                Recipe(name: "Gnocci"),
-                            ]
-                        )
-                    ),
-                    reducer: .empty,
-                    environment: ()
-                )
+        RecipeListView(
+            store: Store(
+                initialState: RecipeList.State(
+                    filterText: "",
+                    loadingState: .loaded(
+                        recipes: [
+                            Recipe(name: "Gnocci"),
+                            Recipe(name: "Gnocci"),
+                            Recipe(name: "Gnocci"),
+                        ]
+                    )
+                ),
+                reducer: .empty,
+                environment: ()
             )
-        }
-        
-        NavigationView {
-            RecipeListView(
-                store: Store(
-                    initialState: RecipeList.State(
-                        filterText: "",
-                        loadingState: .loading
-                    ),
-                    reducer: .empty,
-                    environment: ()
-                )
+        )
+        RecipeListView(
+            store: Store(
+                initialState: RecipeList.State(
+                    filterText: "",
+                    loadingState: .loading
+                ),
+                reducer: .empty,
+                environment: ()
             )
-        }
+        )
     }
 }

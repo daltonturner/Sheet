@@ -20,8 +20,9 @@ struct Sheet: ReducerProtocol {
         case recipeWasSelected(name: String)
         case recipesLoaded([Recipe])
         case filterQueryChanged(String)
-        case loadRecipes
     }
+
+    var loadRecipes: () -> EffectTask<[Recipe]>
 
     public func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
         switch action {
@@ -33,8 +34,11 @@ struct Sheet: ReducerProtocol {
         case .filterQueryChanged(let query):
             state.filterQuery = query
             return .none
-        case .loadRecipes:
-            return .send(.recipesLoaded([]))
         }
     }
+}
+
+struct Recipe: Identifiable, Equatable {
+    let id = UUID()
+    let name: String
 }
