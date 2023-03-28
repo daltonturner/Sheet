@@ -14,17 +14,19 @@ struct RecipeListView: View {
 
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            VStack {
-                searchBar(for: viewStore)
-                if viewStore.loadingState.isLoading {
-                    ProgressView()
-                } else {
-                    recipeList(for: viewStore)
+            NavigationView {
+                VStack {
+                    searchBar(for: viewStore)
+                    if viewStore.loadingState.isLoading {
+                        ProgressView()
+                    } else {
+                        recipeList(for: viewStore)
+                    }
                 }
+                .padding()
+                .navigationTitle("Recipes")
+                .onAppear { viewStore.send(.onAppear) }
             }
-            .padding()
-            .navigationTitle("Recipes")
-            .onAppear { viewStore.send(.onAppear) }
         }
     }
 
