@@ -43,8 +43,3 @@ struct RecipeList: ReducerProtocol {
         }
     }
 }
-
-struct Recipe: Identifiable, Equatable {
-    let id = UUID()
-    let name: String
-}
