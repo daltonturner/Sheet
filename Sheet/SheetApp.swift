@@ -1,10 +1,3 @@
-//
-//  SheetApp.swift
-//  Sheet
-//
-//  Created by Dalton Turner on 2/21/23.
-//
-
 import ComposableArchitecture
 import SwiftUI
 
@@ -12,19 +5,28 @@ import SwiftUI
 struct SheetApp: App {
     var body: some Scene {
         WindowGroup {
-            RecipeListView(
-                store: Store(
-                    initialState: RecipeList.State(
-                        filterText: "",
-                        loadingState: .loaded(
-                            recipes: [
-                                Recipe(name: "Gnocci"),
-                                Recipe(name: "Gnocci"),
-                                Recipe(name: "Gnocci"),
-                            ])
-                    ),
-                    reducer: RecipeList()
-                )
+            RecipeListView(store:
+                    .init(
+                        initialState:.init(
+                            filterText: "",
+                            loadingState: .loaded(
+                                recipes: [
+                                    Recipe(
+                                        name: "Gnocci",
+                                        description: "Potato Pasta",
+                                        ingredients: [
+                                            Ingredient(
+                                                name: "Pasta",
+                                                quantity: "16 oz"
+                                            )
+                                        ],
+                                        steps: ["Boil Water", "Eat"]
+                                    )
+                                ]
+                            )
+                        ),
+                        reducer: RecipeList()
+                    )
             )
         }
     }

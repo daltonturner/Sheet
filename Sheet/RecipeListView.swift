@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  Sheet
-//
-//  Created by Dalton Turner on 2/21/23.
-//
-
 import ComposableArchitecture
 import SwiftUI
 
@@ -27,7 +20,6 @@ struct RecipeListView: View {
                 }
                 .padding()
                 .navigationTitle("Recipes")
-                .onAppear { viewStore.send(.onAppear) }
             }
         }
     }
@@ -37,10 +29,8 @@ struct RecipeListView: View {
         ScrollView {
             ForEach(viewStore.loadingState.recipes) { recipe in
                 VStack {
-                    Button(
-                        action: { viewStore.send(.recipeTapped(recipe: recipe)) }
-                    ) {
-                        HStack {
+                    HStack {
+                        NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
                             Text(recipe.name)
                             Spacer()
                             Image(systemName: "chevron.right")
@@ -48,7 +38,6 @@ struct RecipeListView: View {
                     }
                     Divider()
                 }
-                .foregroundColor(.primary)
             }
         }
         .padding()
@@ -78,21 +67,28 @@ struct RecipeListView: View {
 
 struct RecipieListView_Previews: PreviewProvider {
     static var previews: some View {
-        RecipeListView(
-            store: Store(
-                initialState: RecipeList.State(
-                    filterText: "",
-                    loadingState: .loaded(
-                        recipes: [
-                            Recipe(name: "Gnocci"),
-                            Recipe(name: "Gnocci"),
-                            Recipe(name: "Gnocci"),
-                        ]
-                    )
-                ),
-                reducer: .empty,
-                environment: ()
-            )
+        RecipeListView(store:
+                .init(
+                    initialState:.init(
+                        filterText: "",
+                        loadingState: .loaded(
+                            recipes: [
+                                Recipe(
+                                    name: "Gnocci",
+                                    description: "Potato Pasta",
+                                    ingredients: [
+                                        Ingredient(
+                                            name: "Pasta",
+                                            quantity: "16 oz"
+                                        )
+                                    ],
+                                    steps: ["Boil Water", "Eat"]
+                                )
+                            ]
+                        )
+                    ),
+                    reducer: RecipeList()
+                )
         )
         RecipeListView(
             store: Store(

@@ -1,10 +1,3 @@
-//
-//  RecipeDetail.swift
-//  Sheet
-//
-//  Created by Dalton Turner on 3/26/23.
-//
-
 import ComposableArchitecture
 import SwiftUI
 
